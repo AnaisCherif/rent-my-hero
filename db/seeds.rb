@@ -12,6 +12,9 @@ require 'faker'
 puts "Start"
 
 Character.destroy_all
+User.destroy_all
+
+user = User.create(email: "test@test.com", password:"azerty")
 
 3.times do
   Character.create(
@@ -20,7 +23,7 @@ Character.destroy_all
     location: "Springfield",
     price: rand(50..1000),
     skills: ["#{Faker::Job.key_skill}, #{Faker::Hobby.activity}"],
-    user_id: 1
+    user_id: user
   )
 end
 
@@ -31,7 +34,7 @@ end
     location: Faker::Nation.capital_city,
     price: rand(50..1000),
     skills: ["#{Faker::Job.key_skill}, #{Faker::Hobby.activity}"],
-    user_id: 1
+    user_id: user
   )
 end
 
