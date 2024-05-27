@@ -1,9 +1,10 @@
 <h1>Who do you feel like today?</h1>
 <div>
-<% @characters.each do |character| %>
-<ul>
-  <li><%= character.name %> - <%= character.location %> - <%= character.price %>$</li>
-</ul>
-<% end %>
-
+  <ul>
+    <% @characters.each do |character| %>
+      <li>
+        <%= link_to "#{character.name} - #{character.location} - #{character.price}$", character_path(character) %>
+      </li>
+    <% end %>
+  </ul>
 </div>
