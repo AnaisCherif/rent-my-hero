@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+<h1><%= @character.name  %></h1>
+<p>from <%= @character.from %></p>
+
+<img src="photo_url" alt="">
+
+<p><%= @character.location %></p>
+<p><%= @character.price %></p>
+
+<p><%= @character.skills %></p>
+
+<%= link_to "Book now", "#", class: "btn btn-ghost" %>
+
+    </div>
+  </div>
+</div>

@@ -1,18 +1,38 @@
 class CharactersController < ApplicationController
-  before_action :set_character
-  before_action :params_character
+  before_action :set_character, only: [:show, :destroy, :edit, :update]
+
+  def index
+    @characters = Character.all
+  end
+
+  def new
+    @character = Character.new
+  end
+
+  def show
+  end
+
+  def create
+    @character = Character.new(params_character)
+    @character.user = current_user
+    if @character.save
+      redirect_to character_path(@character)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def edit
   end
 
   def update
-    @character.update(character_params)
+    @character.update(params_character)
     redirect_to character_path(@character)
   end
 
   def destroy
     @character.destroy if @character.user == current_user
-    redirect_to characters_path
+    redirect_to characters_path, status: :see_other
   end
 
   private
@@ -22,7 +42,7 @@ class CharactersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:User_id])
+    @user = User.find(params[:user_id])
   end
 
   def params_character
