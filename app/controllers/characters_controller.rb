@@ -1,4 +1,13 @@
 class CharactersController < ApplicationController
+
+  def new
+    @character = Character.new
+  end
+
+  def create
+    @character = Character.new(character_params)
+    @character.save
+    redirect_to new_character_path
   before_action :set_character
   before_action :params_character
 
@@ -16,6 +25,9 @@ class CharactersController < ApplicationController
   end
 
   private
+
+  def character_params
+    params.require(:character).permit(:name, :location, :from, :price, :skills, :photo_url, :user_id)
 
   def set_character
     @character = Character.find(params[:id])
