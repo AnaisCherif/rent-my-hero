@@ -7,7 +7,7 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
     @character.save
-    redirect_to character_path(@character)
+    redirect_to new_character_path
   end
 
   private
