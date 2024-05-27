@@ -1,8 +1,11 @@
 class CharactersController < ApplicationController
-  
   before_action :set_character, only: [:show, :destroy, :edit, :update]
   before_action :set_user, only: [:create]
   before_action :params_character
+  
+  def index
+    @characters = Character.all
+  end
 
   def new
     @character = Character.new
