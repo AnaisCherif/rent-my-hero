@@ -1,0 +1,9 @@
+<h1>Who do you feel like today?</h1>
+<div>
+<% @characters.each do |character| %>
+<ul>
+  <li><%= character.name %> - <%= character.location %> - <%= character.price %>$</li>
+</ul>
+<% end %>
+
+</div>
