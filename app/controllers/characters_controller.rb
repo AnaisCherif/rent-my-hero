@@ -1,6 +1,5 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :destroy, :edit, :update]
-  before_action :set_user, only: [:create]
 
   def index
     @characters = Character.all
@@ -17,7 +16,7 @@ class CharactersController < ApplicationController
     @character = Character.new(params_character)
     @character.user = current_user
     if @character.save
-    redirect_to character_path(@character)
+      redirect_to character_path(@character)
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,7 +42,7 @@ class CharactersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:User_id])
+    @user = User.find(params[:user_id])
   end
 
   def params_character
