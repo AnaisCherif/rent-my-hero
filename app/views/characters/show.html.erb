@@ -2,17 +2,25 @@
   <div class="row">
     <div class="col">
 
-<h1><%= @character.name  %></h1>
-<p>from <%= @character.from %></p>
+    <h1><%= @character.name  %></h1>
+    <p>from <%= @character.from %></p>
 
-<img src="photo_url" alt="">
+    <img src="photo_url" alt="">
 
-<p><%= @character.location %></p>
-<p><%= @character.price %></p>
 
-<p><%= @character.skills %></p>
+    <p><%= @character.location %></p>
+    <p><%= @character.price %> dollars</p>
 
-<%= link_to "Book now", "#", class: "btn btn-ghost" %>
+
+    <p><%= @character.skills %></p>
+
+    <p>
+    <%= link_to "Edit your character", edit_character_path(@character), class: "btn btn-ghost" %> |
+    <%= link_to "Back to list", characters_path, class: "btn btn-ghost" %> |
+    <%= link_to "Book now", "#", class: "btn btn-ghost" %>
+    </p>
+
+
 
     </div>
   </div>
