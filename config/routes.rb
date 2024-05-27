@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :characters, only: [:new, :create]
+  resources :characters do
+    resources :bookings, only: [:new, :edit]
+  end
+  resources :bookings, only: [:create, :update, :destroy]
 end
