@@ -1,8 +1,7 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :destroy, :edit, :update]
   before_action :set_user, only: [:create]
-  before_action :params_character
-  
+
   def index
     @characters = Character.all
   end
@@ -10,7 +9,7 @@ class CharactersController < ApplicationController
   def new
     @character = Character.new
   end
-  
+
   def show
   end
 
@@ -18,10 +17,10 @@ class CharactersController < ApplicationController
     @character = Character.new(params_character)
     if @character.save
     redirect_to character_path(@character)
-    else 
+    else
       render :new, status: :unprocessable_entity
-    end 
-  end 
+    end
+  end
 
   def edit
   end
