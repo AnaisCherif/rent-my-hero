@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_character, only: %i[create]
+  before_action :set_character, only: %i[create new]
   before_action :set_booking, except: %i[new create index]
 
   def index
@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @booking.character = @character
     @booking.user = current_user
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to bookings_path
     else
       render :new, status: :unprocessable_entity
     end
