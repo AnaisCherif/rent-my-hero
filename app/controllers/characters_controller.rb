@@ -26,7 +26,7 @@ class CharactersController < ApplicationController
   end
 
   def update
-    @character.update(params_character)
+    @character.update(params_character) if @character.user == current_user
     redirect_to character_path(@character)
   end
 
