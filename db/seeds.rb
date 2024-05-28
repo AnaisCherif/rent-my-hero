@@ -52,7 +52,7 @@ characters.each do |character|
     from: character[:from],
     photo_url: character[:photo_url],
     price: rand(50..1000),
-    skills: ["#{Faker::Job.key_skill}, #{Faker::Hobby.activity}"],
+    skills: "#{Faker::Job.key_skill}, #{Faker::Hobby.activity}",
     user_id: user.id
   )
 end
