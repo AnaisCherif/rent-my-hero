@@ -1,5 +1,13 @@
 <div class="container">
 
+  <div class="row mt-5">
+    <div class="col">
+
+    <h1><%= @character.name  %></h1>
+    <p>from <%= @character.from %></p>
+
+    <img src="<% @character.photo_url %>" alt="<% @character.name %>">
+
   <div class="row m-5">
     <div class="col">
       <%= link_to "Back to list", characters_path, class: "btn btn-ghost mb-3" %>
