@@ -1,2 +1,59 @@
 // Import page-specific CSS files here.
 @import "home";
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+li.card {
+  margin: 10px;
+}
+
+.card {
+  width: 200px;
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: left;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.card img {
+  width: 100%;
+  display: block;
+}
+
+.card-info {
+  background-color: white;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.card:hover .card-info {
+  background-color: #f8f2ef;
+}
+
+.card-info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.card-info .price {
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+}
+
+.card li {
+  text-decoration: none;
+}
