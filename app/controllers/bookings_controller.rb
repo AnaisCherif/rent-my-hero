@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
     @booking.character = @character
     @booking.user = current_user
     if @booking.save
-      redirect_to bookings_path
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,9 +32,20 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to bookings_path
+    redirect_to dashboard_path
   end
 
+  def accept
+    @booking.update(status: true)
+    redirect_to dashboard_path
+
+  end
+
+  def decline
+    @booking.update(status: false)
+    redirect_to dashboard_path
+
+  end
 
   private
 
