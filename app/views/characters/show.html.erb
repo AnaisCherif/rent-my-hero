@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
     <div class="col">
 
     <h1><%= @character.name  %></h1>
@@ -8,11 +8,10 @@
     <img src="photo_url" alt="">
 
 
-    <p><%= @character.location %></p>
-    <p><%= @character.price %> dollars</p>
+    <p><i class="fa-solid fa-location-dot"></i> <%= @character.location %></p>
+    <p><i class="fa-solid fa-money-bill-wave"></i> <%= @character.price %> dollars / day</p>
 
-
-    <p><%= @character.skills %></p>
+    <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
 
     <p>
     <%= link_to "Back to list", characters_path, class: "btn btn-ghost" %> |
