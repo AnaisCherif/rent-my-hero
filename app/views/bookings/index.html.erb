@@ -1,11 +1,16 @@
 <h1>Hello, <%= current_user.first_name %></h1>
 <div>
   <ul>
-    <% @bookings.each do |booking| %>
+    <h2>My Characters Bookings</h2>
+    <% @my_bookings.each do |booking| %>
       <% if booking.character.user == current_user %>
-        <li><%= "#{booking.character.name} - #{booking.user} - #{booking.character.price}$ || Accept | Decline" %></li>
-      <% else %>
-        <li><%= "#{booking.character.name} - #{booking.character.user} - #{booking.character.price}$ || Pending / Accepted / Declined" %></li>
+        <li><%= "#{booking.character.name} - #{booking.user.first_name} - #{booking.character.price}$ || Accept | Decline" %></li>
+      <% end %>
+    <% end %>
+    <h2>My Bookings</h2>
+    <% @bookings.each do |booking| %>
+      <% if booking.user == current_user %>
+        <li><%= "#{booking.character.name} - #{booking.character.user.first_name} - #{booking.character.price}$ || Pending" %></li>
       <% end %>
     <% end %>
   </ul>
