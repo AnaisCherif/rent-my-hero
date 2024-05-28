@@ -5,7 +5,11 @@
             <li class="card">
                 <%= link_to character_path(character), class: 'card-link' do %>
                     <div class="card">
-                        <img src="<% character.photo_url %>" alt="<%= character.name %>">
+                        <% if character.photo_url? == true %>
+                          <%= image_tag character.photo_url, alt: "text" %>
+                        <% else %>
+                            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= character[:name] %>">
+                        <% end %>
                         <div class="card-info">
                             <h3><%= character.name %></h3>
                             <p><%= character.location %></p>

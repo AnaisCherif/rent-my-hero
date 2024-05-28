@@ -17,7 +17,7 @@ Character.destroy_all
 User.destroy_all
 
 characters = [
-  { name: "Abraham Simpson", location: "Springfield", from: "The Simpsons", photo_url: "https://static.wikia.nocookie.net/heros/images/7/7a/Abraham_Simpson_Infobox.jpg/revision/latest?cb=20200917150550&path-prefix=fr" },
+  { name: "Abraham Simpson", location: "Springfield", from: "The Simpsons", photo_url: "https://www.simpsonspark.com/images/persos/contributions/abraham-simpson-22960.jpg" },
   { name: "Harry Potter", location: "Hogwarts", from: "Harry Potter Series", photo_url: "https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg" },
   { name: "Frodo Baggins", location: "Shire", from: "The Lord of the Rings", photo_url: "https://upload.wikimedia.org/wikipedia/en/8/87/Frodo_Baggins.jpeg" },
   { name: "Jon Snow", location: "Winterfell", from: "Game of Thrones", photo_url: "https://upload.wikimedia.org/wikipedia/en/3/30/Jon_Snow_Season_8.png" },
