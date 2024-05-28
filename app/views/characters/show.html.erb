@@ -1,6 +1,7 @@
 <div class="container">
-  <div class="row">
+  <div class="row m-5">
     <div class="col">
+    <%= link_to "Back to list", characters_path, class: "btn btn-ghost mb-5" %>
 
     <h1><%= @character.name  %></h1>
     <p>from <%= @character.from %></p>
@@ -12,15 +13,14 @@
 
     <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
 
-    <p>
-    <%= link_to "Back to list", characters_path, class: "btn btn-ghost" %> |
+    <div class="row m-5">
       <% if @character.user == current_user %>
         <%= link_to "Edit your character", edit_character_path(@character), class: "btn btn-ghost" %>
       <% else %>
         <%= link_to "Book now", new_character_booking_path(@character), class: "btn btn-ghost" %>
       <% end %>
-    </p>
-
+    </div>
+  </div>
 
 
     </div>
