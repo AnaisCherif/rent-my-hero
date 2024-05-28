@@ -7,17 +7,24 @@ class BookingsController < ApplicationController
     @bookings = current_user.bookings
   end
 
-  def edit
-  end
-
   def new
-
+    @booking = Booking.new
   end
 
   def create
-
+    @booking = Booking.new(params_booking)
+    @booking.character = @character
+    @booking.user = @user
+    if @booking.save
+      redirect_to booking_path(@booking)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
-
+  
+  def edit
+  end
+  
   def update
     @booking.update(params_booking) if @booking.character.user == current_user
     redirect_to booking_path(@booking)
@@ -27,6 +34,7 @@ class BookingsController < ApplicationController
     @booking.destroy
     redirect_to bookings_path
   end
+
 
   private
 
