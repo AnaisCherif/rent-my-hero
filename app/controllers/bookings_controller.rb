@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   before_action :set_user, only: %i[create]
 
   def index
-    @bookings = Booking.all
+    @bookings = current_user.bookings
   end
 
   def new
@@ -21,6 +21,20 @@ class BookingsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  
+  def edit
+  end
+  
+  def update
+    @booking.update(params_booking) if @booking.character.user == current_user
+    redirect_to booking_path(@booking)
+  end
+
+  def destroy
+    @booking.destroy
+    redirect_to bookings_path
+  end
+
 
   private
 
@@ -33,11 +47,10 @@ class BookingsController < ApplicationController
   end
 
   def set_booking
-    @booking = Booking.find(params[:booking_id])
+    @booking = Booking.find(params[:id])
   end
 
   def params_booking
     params.require(:booking).permit(:start_date, :end_date)
   end
-
 end
