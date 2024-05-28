@@ -16,7 +16,7 @@ Character.destroy_all
 User.destroy_all
 
 characters = [
-  { name: "Abraham Simpson", location: "Springfield", from: "The Simpsons", photo_url: "https://static.wikia.nocookie.net/heros/images/7/7a/Abraham_Simpson_Infobox.jpg/revision/latest?cb=20200917150550&path-prefix=fr" },
+  { name: "Abraham Simpson", location: "Springfield", from: "The Simpsons", photo_url: "https://www.simpsonspark.com/images/persos/contributions/abraham-simpson-22960.jpg" },
   { name: "Harry Potter", location: "Hogwarts", from: "Harry Potter Series" },
   { name: "Frodo Baggins", location: "Shire", from: "The Lord of the Rings" },
   { name: "Jon Snow", location: "Winterfell", from: "Game of Thrones" },
@@ -51,7 +51,8 @@ characters.each do |character|
     from: character[:from],
     price: rand(50..1000),
     skills: ["#{Faker::Job.key_skill}, #{Faker::Hobby.activity}"],
-    user_id: user.id
+    user_id: user.id,
+    photo_url: character[:photo_url]
   )
 end
 
