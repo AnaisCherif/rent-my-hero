@@ -7,10 +7,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root to: "pages#home"
+  root to: "characters#index"
 
   resources :characters do
     resources :bookings, only: [:new, :create]
   end
-  resources :bookings, only: [:index, :edit, :update, :destroy]
+  resources :bookings, only: [:edit, :update, :destroy]
+  get "/dashboard", to: "bookings#index", as: :dashboard
+  patch "/bookings/:id/accept", to: "bookings#accept", as: :accept
+  patch "/bookings/:id/decline", to: "bookings#decline", as: :decline
 end
