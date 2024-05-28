@@ -3,7 +3,8 @@ class BookingsController < ApplicationController
   before_action :set_booking, except: %i[new create index]
 
   def index
-    @bookings = current_user.bookings
+    @bookings = Booking.where(user: current_user)
+    @my_bookings = Booking.where(character_id: current_user.characters)
   end
 
   def new
