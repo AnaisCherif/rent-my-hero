@@ -1,4 +1,6 @@
 .footer {
+  margin-top: auto;
+  display: table-row;
   background: #F4F4F4;
   display: flex;
   align-items: center;
@@ -23,4 +25,10 @@
 }
 .footer .fa-heart {
   color: #D23333;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
