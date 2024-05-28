@@ -1,5 +1,11 @@
 <div class="col-4 mx-auto">
-  <%= link_to 'Delete', character_path(@character),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+  <% if @character.user == current_user %>
+    <h1 class="my-5">Edit your character</h1>
+  <% else %>
+    <h1 class="my-5">Book your character</h1>
+  <% end %>
+
   <%= render 'form', character: @character %>
+
 </div>
