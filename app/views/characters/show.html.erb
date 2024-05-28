@@ -5,7 +5,7 @@
     <h1><%= @character.name  %></h1>
     <p>from <%= @character.from %></p>
 
-    <img src="photo_url" alt="">
+    <img src="<% @character.photo_url %>" alt="<% @character.name %>">
 
 
     <p><i class="fa-solid fa-location-dot"></i> <%= @character.location %></p>
