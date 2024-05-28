@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_character, only: %i[create]
+  before_action :set_character, only: %i[create new]
   before_action :set_booking, except: %i[new create index]
-  before_action :set_user, only: %i[create]
 
   def index
     @bookings = current_user.bookings
@@ -14,17 +13,17 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(params_booking)
     @booking.character = @character
-    @booking.user = @user
+    @booking.user = current_user
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to bookings_path
     else
       render :new, status: :unprocessable_entity
     end
   end
-  
+
   def edit
   end
-  
+
   def update
     @booking.update(params_booking) if @booking.character.user == current_user
     redirect_to booking_path(@booking)
@@ -40,10 +39,6 @@ class BookingsController < ApplicationController
 
   def set_character
     @character = Character.find(params[:character_id])
-  end
-
-  def set_user
-    @user = User.find(params[:user_id])
   end
 
   def set_booking
