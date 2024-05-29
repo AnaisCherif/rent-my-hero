@@ -11,9 +11,8 @@ class CharactersController < ApplicationController
       }
 
       # if descending > sort by descending price
-      # if ascending > sort by ascending price 
+      # if ascending > sort by ascending price
     end
-
   end
 
   def new
