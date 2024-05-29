@@ -1,4 +1,11 @@
-<h1>Who do you feel like today?</h1>
+<div class="banner">
+  <div class="container">
+    <h1>MythicMates</h1>
+    <p>Who do you feel like today?</p>
+    <a class="btn-ghost" href="#">Browse</a>
+  </div>
+</div>
+
 <div>
     <ul>
         <% @characters.each do |character| %>
@@ -8,7 +15,7 @@
                         <% if character.photo_url? == true %>
                           <%= image_tag character.photo_url, alt: "text" %>
                         <% else %>
-                            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= character[:name] %>">
+                            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= @character[:name] %>">
                         <% end %>
                         <div class="card-info">
                             <h3><%= character.name %></h3>
