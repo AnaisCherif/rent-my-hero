@@ -1,8 +1,9 @@
 <div class="banner">
   <div class="container">
-    <h1 class="fs-1">MythicMates</h1>
-    <p>Who do you feel like today?</p>
-    <a class="btn btn-ghost" href="#">Browse</a>
+    <h1 class="fs-1 mb-3">MythicMates</h1>
+    <div class="d-flex flex-column align-items-center">
+      <p class="mb-5">Who do you feel like today?</p>
+      <a class="btn btn-ghost mt-5" href="/#:~:text=Browse-,Browse,-by%20character">Browse</a>
   </div>
 </div>
 
@@ -20,9 +21,13 @@
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-  </div>
 
-  <div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="cards-container">
+    <h4 class="centered">Browse by character</h2>
     <ul>
       <% @characters.each do |character| %>
           <li class="card">
@@ -40,10 +45,24 @@
                       </div>
                   </div>
               <% end %>
-          </li>
+              <div class="card-info">
+                <h3><%= character.name %></h3>
+                <p><%= character.location %></p>
+                <p class="price"><%= character.price %>$/day</p>
+              </div>
+            </div>
+          <% end %>
+        </li>
       <% end %>
-
     </ul>
   </div>
 
+  <div class="map-container">
+    <h4 class="centered">Browse by location</h2>
+    <div class="map"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
 </div>
