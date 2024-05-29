@@ -38,13 +38,11 @@ class BookingsController < ApplicationController
   def accept
     @booking.update(status: true)
     redirect_to dashboard_path
-
   end
 
   def decline
     @booking.update(status: false)
     redirect_to dashboard_path
-
   end
 
   private

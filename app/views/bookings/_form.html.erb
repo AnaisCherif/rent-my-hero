@@ -1,5 +1,6 @@
 <div data-controller="booking" data-booking-price-value="<%= @character.price %>" >
   <%= simple_form_for [character, booking] do |f| %>
+    <div class="d-flex">
     <%= f.input :start_date,
       as: :string,
       input_html: { data: { controller: "datepicker", action: "change->booking#update", datepicker_target: 'start_date', booking_target: "start_date" }, min: Date.today } %>
@@ -7,8 +8,8 @@
     <%= f.input :end_date,
       as: :string,
       input_html: { data: { controller: "datepicker", action: "change->booking#update", datepicker_target: 'end_Date', booking_target: "end_date" }, min: Date.today } %>
-
-    <div class="border rounded p-4 mb-3">
+    </div>
+    <div class="border rounded p-4">
       <div class="form-group">
         <strong>Price per day:</strong>
         <span id="price-per-day"><%= @character.price %> $</span>
@@ -18,13 +19,13 @@
         <span data-booking-target='info'></span>
         <div class="border-top pt-3" >
           <strong>Total Price:</strong>
-          <span data-booking-target="price">0</span><br>
+          <span data-booking-target="price"></span><br>
         </div>
       </div>
     </div>
+    <%= f.submit 'Book a hero', class:"btn btn-ghost my-3" %>
 
 
-    <%= f.submit 'Book a hero', class:"btn btn-ghost" %>
 
   <% end %>
 </div>
