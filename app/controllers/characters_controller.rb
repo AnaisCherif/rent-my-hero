@@ -3,6 +3,14 @@ class CharactersController < ApplicationController
 
   def index
     @characters = Character.all
+
+    @markers = @characters.geocoded.map do |character|
+      {
+        lat: character.latitude,
+        lng: character.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { character: character })
+      }
+    end
   end
 
   def new
