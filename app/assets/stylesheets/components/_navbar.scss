@@ -1,6 +1,19 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: $pink;
+  background: hsla(7, 83%, 72%, 1);
+  background: linear-gradient(
+    hsla(7, 83%, 72%, 1) 0%,
+    hsla(224, 47%, 66%, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    hsla(7, 83%, 72%, 1) 0%,
+    hsla(224, 47%, 66%, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    hsla(7, 83%, 72%, 1) 0%,
+    hsla(224, 47%, 66%, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f38a7c", endColorstr="#7f95d1", GradientType=1);
 }
 
 .navbar-lewagon .navbar-collapse {
