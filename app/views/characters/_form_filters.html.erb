@@ -1,0 +1,14 @@
+
+<%# <%= simple_form_for(characters) do |f| %>
+  <%# <%= f.input :price, as: :select, prompt: 'Choose a price', collection: ['1-100$', '101-300$', '301-600$', '601-1000$', '1000 and beyond'] %>
+  <%# <%= f.input :skills, as: :select, prompt: 'Choose a skill', collection: ['Problem solving', 'Hooping', 'Networking skills'] %>
+  <%# <%= f.submit "Search", class: "btn-ghost btn-ghost:hover" %>
+<%# <% end %>
+
+<%= link_to "Ascending prices", characters_path(asc: true) %>
+<%= link_to "Descending prices", characters_path(desc: true) %>
+
+<%= form_with url: characters_path, method: :get do |f| %>
+  <%= select_tag :price, options_for_select([['prix asc', '1'], ['prix desc', '2']]), { prompt: "Choose a price", selected: '2' } %>
+  <%= f.submit "toto" %>
+<% end %>
