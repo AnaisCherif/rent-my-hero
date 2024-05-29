@@ -7,6 +7,18 @@
 </div>
 
 <div>
+
+  <div>
+    <div class="container">
+      <div style="width: 100%; height: 300px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
+
+  <div>
     <ul>
         <% @characters.each do |character| %>
             <li class="card">
@@ -15,7 +27,7 @@
                         <% if character.photo_url? == true %>
                           <%= image_tag character.photo_url, alt: "text" %>
                         <% else %>
-                            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= character[:name] %>">
+                            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= @character[:name] %>">
                         <% end %>
                         <div class="card-info">
                             <h3><%= character.name %></h3>
@@ -27,4 +39,6 @@
             </li>
         <% end %>
     </ul>
+  </div>
+
 </div>
