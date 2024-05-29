@@ -5,9 +5,11 @@
   <%= f.input :from %>
   <%= f.input :price %>
   <%= f.input :skills %>
-  <%= f.input :photo_url, label: "Photo", as: :file %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit "Submit", class: "btn-ghost btn-ghost:hover" %>
-  <%= link_to 'Delete', characters_path,
+  <% if character.user == current_user %>
+  <%= link_to 'Delete', character_path(@character),
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-ghost btn-ghost:hover" %>
+  <% end %>
 <% end %>
 </div>

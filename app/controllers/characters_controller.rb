@@ -3,14 +3,17 @@ class CharactersController < ApplicationController
 
   def index
     @characters = Character.all
-
     @markers = @characters.geocoded.map do |character|
       {
         lat: character.latitude,
         lng: character.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { character: character })
       }
+
+      # if descending > sort by descending price
+      # if ascending > sort by ascending price 
     end
+
   end
 
   def new
@@ -54,6 +57,6 @@ class CharactersController < ApplicationController
   end
 
   def params_character
-    params.require(:character).permit(:name, :location, :from, :price, :skills, :photo_url)
+    params.require(:character).permit(:name, :location, :from, :price, :skills, :photo)
   end
 end
