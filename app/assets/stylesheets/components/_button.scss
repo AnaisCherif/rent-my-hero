@@ -11,3 +11,18 @@
 .btn-ghost:hover {
   opacity: 0.8;
 }
+
+.btn-large {
+  color: $white;
+  background-color: $green;
+  border: 1px solid $green;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: light;
+  width: 700px;
+  transition: opacity 0.3s ease;
+}
+
+.btn-large:hover {
+  opacity: 0.8;
+}

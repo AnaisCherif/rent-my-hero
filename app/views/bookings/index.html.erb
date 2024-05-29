@@ -1,38 +1,55 @@
 <h1>Hello, <%= current_user.first_name %></h1>
-<div class="container">
-  <ul>
-    <div class="container text-center">
-    <h2>My Characters Bookings</h2>
-    <% @my_bookings.each do |booking| %>
-      <li>
-      <% if booking.character.user == current_user %>
-        <%= "#{booking.character.name} - #{booking.user.first_name} - #{booking.character.price}$ || #{booking.status}" %>
-        <% if booking.status == nil %>
-          <%= link_to "Accept", accept_path(booking),
-            data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} %>
-          <%= link_to "Decline", decline_path(booking),
-            data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} %>
-        <% end %>
-      <% end %>
-    <% end %>
-        </li>
-        </ul>
-        <ul>
-    </div>
-    <div class="container text-center">
-    <h2>My Bookings</h2>
-    <% @bookings.each do |booking| %>
-      <% if booking.user == current_user %>
-        <li><%= "#{booking.character.name} - #{booking.character.user.first_name} - #{booking.character.price}$ || " %>
-          <% if booking.status %>
-            <%= "Accepted" %>
-          <% elsif booking.status == nil %>
-             <%= "Pending" %>
-          <% else %>
-           <%= "Declined" %></li>
+
+<div class="container d-flex justify-items-center mt-5">
+
+    <div>
+        <h2 class="text-center mb-3">My characters bookings</h2>
+      <ul class="list-group">
+        <% @my_bookings.each do |booking| %>
+          <li class="list-group-item">
+            <% if booking.character.user == current_user %>
+              <%= "#{booking.character.name} - #{booking.user.first_name} - #{booking.character.price}$ per day" %>
+
+                <% if booking.status == nil %>
+                  <p><%= link_to "Accept", accept_path(booking),
+                    data: {turbo_method: :patch, turbo_confirm: "Are you sure you want to accept this booking?"} %> |
+                  <%= link_to "Decline", decline_path(booking),
+                    data: {turbo_method: :patch, turbo_confirm: "Are you sure you want to decline this booking?"} %></p>
+                <% elsif booking.status == true %>
+                  <p><%= "Accepted" %></p>
+                <% else %>
+                  <p><%= "Declined" %></p>
+                <% end %>
+
+
+            <% end %>
           <% end %>
-        <% end %>
-      <% end %>
-  </ul>
+          </li>
+      </ul>
     </div>
+
+
+    <div>
+        <h2 class="text-center mb-3">My bookings</h2>
+      <ul class="list-group">
+        <% @bookings.each do |booking| %>
+          <% if booking.user == current_user %>
+            <li class="list-group-item"><%= "#{booking.character.name} - #{booking.character.price}$ per day" %>
+            <p><%= "From #{booking.start_date} to #{booking.end_date}" %></p>
+              <% if booking.status %>
+                <p><strong><%= "Accepted" %></strong> <i class="fa-solid fa-check"></i></p>
+              <% elsif booking.status == nil %>
+                <p><strong><%= "Still pending" %></strong> <i class="fa-solid fa-clock"></i></p>
+              <% else %>
+                <p><strong><%= "Declined" %></strong> <i class="fa-solid fa-xmark"></i></p>
+              <% end %>
+            </li>
+            <% end %>
+          <% end %>
+      </ul>
+    </div>
+</div>
+
+<div class="mx-auto my-5">
+  <%= link_to "Back to list", characters_path, class: "btn btn-large" %>
 </div>
