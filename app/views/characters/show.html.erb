@@ -8,8 +8,8 @@
 
       <div class="d-flex mt-5 border rounded-4 p-4 shadow">
           <div class="card">
-            <% if @character.photo_url? == true %>
-              <%= image_tag @character.photo_url, alt: "text" %>
+            <% if @character.photo.attached? == true %>
+              <%= cl_image_tag @character.photo.key, alt: "text" %>
             <% else %>
               <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= @character[:name] %>">
             <% end %>
