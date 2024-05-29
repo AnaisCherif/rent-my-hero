@@ -6,9 +6,10 @@
         <h2 class="text-center mb-3">My characters bookings</h2>
       <ul class="list-group">
         <% @my_bookings.each do |booking| %>
-          <li class="list-group-item">
+          <li class="list-group-item", data-controller="booking" data-booking-price-value="<%= booking.character.price %>">
             <% if booking.character.user == current_user %>
               <%= "#{booking.character.name} - #{booking.user.first_name} - #{booking.character.price}$ per day" %>
+              <span data-booking-target="price"></span><br>
 
                 <% if booking.status == nil %>
                   <p><%= link_to "Accept", accept_path(booking),

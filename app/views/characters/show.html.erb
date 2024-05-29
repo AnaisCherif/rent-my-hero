@@ -1,12 +1,13 @@
 <div class="container">
-  <div class="row m-5">
+  <div class="m-5">
     <div class="col">
 
       <%= link_to "Back to list", characters_path, class: "btn btn-ghost mb-3" %>
 
       <h1><%= @character.name  %></h1>
 
-      <div class="d-flex mt-5 border rounded-4 p-4 shadow">
+    <div class="d-flex">
+      <div class="d-flex col m-5 border rounded-4 p-4 shadow">
           <div class="card">
             <% if @character.photo_url? == true %>
               <%= image_tag @character.photo_url, alt: "text" %>
@@ -22,14 +23,17 @@
               <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
           </div>
         </div>
-
+      <div class="col-4 m-5 border rounded-4 p-4 shadow">
+    <%= render "/bookings/form", booking: Booking.new, character: @character %>
+      </div>
+    </div>
     </div>
   </div>
 </div>
-
 <div class="mx-auto mb-3">
     <% if @character.user == current_user %>
-      <p><%= link_to "Edit your character", edit_character_path(@character), class: "btn btn-large" %></p>
+      <%= render "modal" %>
+      <p><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "btn btn-large"} %></p>
     <% else %>
       <p><%= link_to "Book now", new_character_booking_path(@character), class: "btn btn-large" %></p>
     <% end %>
