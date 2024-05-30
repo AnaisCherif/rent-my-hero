@@ -44,8 +44,28 @@
       </li>
     </ul>
 
+  <div class="col m-5 border rounded-4 p-4 shadow">
+    <p><strong>Some reviews:</strong></p>
+<% Review.all.sample(3).each do |review| %>
+      <div class="d-flex border-bottom">
+        <div class="mx-3">
+        <% if review.character.user.photo.attached? %>
+          <%= cl_image_tag review.character.user.photo.key, alt: "text", height: 50, width: 50, class: "rounded-circle object-fit-cover" %>
+        <% else %>
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= review.character[:name] %>">
+        <% end %>
+        </div>
+        <div>
+        <%= review.user.first_name %> about <%= review.character.name %>:<br>
+        <em><%= review.content %></em>
+        </div>
+      </div>
+  </div>
+<% end %>
 
   </div>
+
+
   <div class="map-container">
     <%# <h4 class="centered">Browse by location</h4> %>
     <div class="map"
@@ -55,6 +75,7 @@
     </div>
   </div>
 </div>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

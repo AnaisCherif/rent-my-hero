@@ -3,6 +3,7 @@ class CharactersController < ApplicationController
 
   def index
     @characters = Character.all
+    @reviews = Review.all
     @markers = @characters.geocoded.map do |character|
       {
         lat: character.latitude,
@@ -24,6 +25,7 @@ class CharactersController < ApplicationController
   end
 
   def show
+    @review = Review.new
   end
 
   def create
@@ -32,7 +34,7 @@ class CharactersController < ApplicationController
     if @character.save
       redirect_to character_path(@character)
     else
-      render :new, status: :unprocessable_entity
+      # render :new, status: :unprocessable_entity
     end
   end
 
