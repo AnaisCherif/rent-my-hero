@@ -22,7 +22,7 @@
             <% if current_user.photo.attached? %>
               <%= cl_image_tag current_user.photo.key, alt: "avatar", height: 50, width: 50, class: "rounded-circle object-fit-cover"   %>
             <% else %>
-              <%= image_tag "https://i.pinimg.com/736x/28/73/e5/2873e5d998e21ea8f428fad8f9c5e3b6.jpg", alt="avatar" %>
+                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="avatar", height= 50, width= 50, class= "rounded-circle object-fit-cover">
             <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
