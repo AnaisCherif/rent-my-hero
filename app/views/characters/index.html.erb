@@ -19,9 +19,10 @@
 
 <div class="d-flex justify-content-end mb-3">
   <p class="me-3">Filters : </p>
+  <%= link_to "Best reviews", characters_path(r_asc: true), class: "btn btn-sm btn-light me-3" %>
+  <%= link_to "Worst reviews", characters_path(r_desc: true), class: "btn btn-sm btn-light me-5"%>
   <%= link_to "Ascending prices", characters_path(asc: true), class: "btn btn-sm btn-light me-3" %>
-  <%= link_to "Descending prices", characters_path(desc: true), class: "btn btn-sm btn-light me-5"
-  %>
+  <%= link_to "Descending prices", characters_path(desc: true), class: "btn btn-sm btn-light me-5"%>
 </div>
 
 <div class="content">
