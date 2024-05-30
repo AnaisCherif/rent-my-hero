@@ -16,14 +16,13 @@ class CharactersController < ApplicationController
       @characters = @characters.where(sql_subquery, query: "%#{params[:query]}%")
     end
 
-    # if desc == true
-    #   # sort by descending price
-    #   @characters = @characters.sort
-    # elsif asc == true
-    #   # sort by ascending price
-    #   @characters = @characters.sort
-    # end
+    if params[:desc].present?
+      @characters = @characters.sort_by { |character| -character.price }
+    elsif params[:asc].present?
+      @characters = @characters.sort_by { |character| character.price }
+    end
   end
+
 
   def new
     @character = Character.new
