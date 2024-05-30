@@ -11,10 +11,11 @@ Rails.application.routes.draw do
 
   resources :characters do
     resources :bookings, only: [:new, :create]
+    resources :reviews, only: [:index, :new, :create]
   end
   resources :bookings, only: [:edit, :update, :destroy]
   get "/dashboard", to: "bookings#index", as: :dashboard
   patch "/bookings/:id/accept", to: "bookings#accept", as: :accept
   patch "/bookings/:id/decline", to: "bookings#decline", as: :decline
-  get "/searchby", to: "characters#searchby", as: :searchby
+
 end

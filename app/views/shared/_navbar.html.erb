@@ -1,4 +1,6 @@
-<%= render "shared/modal" %>
+<% if user_signed_in? %>
+  <%= render "shared/modal" %>
+<% end %>
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
   <div class="container-fluid">
     <%= link_to "/characters", class: "navbar-brand" do %>

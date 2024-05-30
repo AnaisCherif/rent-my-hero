@@ -38,5 +38,6 @@
       <p><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "btn btn-large"} %></p>
     <% else %>
       <p><%= link_to "Book now", new_character_booking_path(@character), class: "btn btn-large" %></p>
+      <p><%= link_to "Add a new review", new_character_review_path(@character), class: "btn btn-primary" %></p>
     <% end %>
 </div>
