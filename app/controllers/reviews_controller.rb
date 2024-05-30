@@ -1,12 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :set_character, only: %i[new create]
-  before_action :set_reviews, only: :show
 
   def index
     @reviews = Review.all
-  end
-
-  def show
   end
 
   def new
@@ -16,6 +12,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.character = @character
+    @review.user = current_user
     @review.save
     if @review.save
       redirect_to character_path(@character)
