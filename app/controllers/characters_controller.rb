@@ -10,14 +10,19 @@ class CharactersController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: { character: character })
       }
     end
-      # if descending > sort by descending price
-      # if ascending > sort by ascending price
 
     if params[:query].present?
       sql_subquery = "name ILIKE :query OR univers ILIKE :query"
       @characters = @characters.where(sql_subquery, query: "%#{params[:query]}%")
     end
+
+    if params[:desc].present?
+      @characters = @characters.sort_by { |character| -character.price }
+    elsif params[:asc].present?
+      @characters = @characters.sort_by { |character| character.price }
+    end
   end
+
 
   def new
     @character = Character.new
