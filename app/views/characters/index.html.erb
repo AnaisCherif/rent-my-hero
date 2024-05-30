@@ -8,18 +8,26 @@
   </div>
 </div>
 
-
-<%# <%= link_to "Ascending prices", characters_path(asc: true) %>
-<%# <%= link_to "Descending prices", characters_path(desc: true) %>
-
-<div class="m-5" id="browse">
+<div class="mx-5 mt-5 mb-3" id="browse">
   <%= render 'form_filters', characters: @characters %>
+</div>
+
+<%# <div class="mx-auto d-flex">
+<label for="Price" class="form-label pe-3">Price</label>
+<input type="range" class="form-range" min="0" max="5" id="priceSelect">
+</div> %>
+
+<div class="d-flex justify-content-end mb-3">
+  <p class="me-3">Filters : </p>
+  <%= link_to "Best reviews", characters_path(r_asc: true), class: "btn btn-sm btn-light me-3" %>
+  <%= link_to "Worst reviews", characters_path(r_desc: true), class: "btn btn-sm btn-light me-5"%>
+  <%= link_to "Ascending prices", characters_path(asc: true), class: "btn btn-sm btn-light me-3" %>
+  <%= link_to "Descending prices", characters_path(desc: true), class: "btn btn-sm btn-light me-5"%>
 </div>
 
 <div class="content">
   <div class="cards-container">
       <% if @characters.any? %>
-    <%# <h4 class="centered">Browse by character</h4> %>
     <ul>
         <% @characters.each do |character| %>
           <li class="card">
@@ -67,7 +75,6 @@
 
 
   <div class="map-container">
-    <%# <h4 class="centered">Browse by location</h4> %>
     <div class="map"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
