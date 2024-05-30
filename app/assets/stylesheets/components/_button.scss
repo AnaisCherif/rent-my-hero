@@ -12,6 +12,20 @@
   opacity: 0.8;
 }
 
+.btn-light {
+  color: $gray;
+  background-color: $white;
+  border: 1px solid $gray;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: light;
+  transition: opacity 0.3s ease;
+}
+
+.btn-light:hover {
+  opacity: 0.8;
+}
+
 .btn-large {
   color: $white;
   background-color: $blue;
