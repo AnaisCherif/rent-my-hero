@@ -3,12 +3,12 @@
     <h1 class="fs-1 mb-3">MythicMates</h1>
     <div class="d-flex flex-column align-items-center">
       <p class="mb-5">Who do you feel like today?</p>
-      <a class="btn btn-ghost mt-5" href="/#:~:text=Browse-,Browse,-by%20character">Browse</a>
+      <a href="#browse" class="btn btn-ghost mt-5" >Browse</a>
     </div>
   </div>
 </div>
 
-<div>
+<div id="browse">
   <%= render 'form_filters', characters: @characters %>
 </div>
 
@@ -45,3 +45,19 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const browseButton = document.querySelector('a[href="#browse"]');
+
+  browseButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    const targetElement = document.querySelector("#browse");
+    const offset = targetElement.getBoundingClientRect().top - 100;
+    window.scrollTo({
+      top: offset,
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
