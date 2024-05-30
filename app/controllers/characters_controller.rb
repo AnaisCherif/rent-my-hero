@@ -46,7 +46,7 @@ class CharactersController < ApplicationController
     if @character.save
       redirect_to character_path(@character)
     else
-      # render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
