@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get "/dashboard", to: "bookings#index", as: :dashboard
   patch "/bookings/:id/accept", to: "bookings#accept", as: :accept
   patch "/bookings/:id/decline", to: "bookings#decline", as: :decline
+  get "/searchby", to: "characters#searchby", as: :searchby
 end
