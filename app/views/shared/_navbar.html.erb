@@ -17,7 +17,11 @@
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, alt: "avatar", height: 50, width: 50, class: "rounded-circle object-fit-cover"   %>
+            <% else %>
+              <%= image_tag "https://i.pinimg.com/736x/28/73/e5/2873e5d998e21ea8f428fad8f9c5e3b6.jpg", alt="avatar" %>
+            <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My bookings", dashboard_path, class: "dropdown-item" %>
