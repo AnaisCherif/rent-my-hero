@@ -31,33 +31,33 @@
       </div>
     </div>
   </div>
+</div>
+  
+<div class="col-9 mx-auto mb-3">
+    <%= render "modal" %>
+    <% if @character.user == current_user %>
+      <div class="d-flex justify-content-between"><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "col-6 btn btn-large"} %>
+        <%= link_to 'Delete', character_path(@character),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "col-3 btn btn-ghost btn-ghost:hover" %>
+      </div>
+    <% else %>
+      <div class="d-flex justify-content-center">
+      <%= link_to "Add review", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addreview', class: "btn btn-large btn-large:hover"} %>
+      </div>
+ </div>
 
-  <div class="col-9 mx-auto mb-3">
-      <%= render "modal" %>
-      <% if @character.user == current_user %>
-        <div class="d-flex justify-content-between"><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "col-6 btn btn-large"} %>
-          <%= link_to 'Delete', character_path(@character),
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "col-3 btn btn-ghost btn-ghost:hover" %>
-        </div>
-        <% else %>
-          <div class="d-flex justify-content-center">
-            <%= link_to "Add a new review", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addreview', class: "btn btn-large btn-large:hover"} %>
-          </div>
-        <% end %>
-  </div>
-
-  <div class="col m-5 border rounded-4 p-4 shadow">
-    <p><strong>Reviews:</strong></p>
-    <% if @character.reviews.any? %>
-      <% @character.reviews.each do |review| %>
-        <div class="border-bottom">
-          <%= review.user.first_name %>
-          <%= review.content %>
-        </div>
+<div class="col m-5 border rounded-4 p-4 shadow">
+  <p><strong>Reviews </strong><i class="fa-solid fa-star"></i></p>
+  <% if @character.reviews.any? %>
+    <% @character.reviews.each do |review| %>
+      <div class="border-bottom m-2">
+        <p><strong><%= review.user.first_name %></strong> -
+        <%= review.content %></p>
+      </div>
       <% end %>
     <% else %>
       <p>No reviews yet</p>
     <% end %>
-  </div>
+ </div>
 
 </div>

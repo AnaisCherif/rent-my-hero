@@ -21,6 +21,13 @@ class CharactersController < ApplicationController
     elsif params[:asc].present?
       @characters = @characters.sort_by { |character| character.price }
     end
+
+    # if params[:r_asc].present?
+    #   @characters = @characters.sort_by { |character| character.reviews.reco }
+    # elsif params[:r_desc].present?
+    #   @characters = @characters.sort_by { |character| -character.reviews.reco }
+    # end
+
   end
 
 
