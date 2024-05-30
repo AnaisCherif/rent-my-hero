@@ -28,7 +28,19 @@ class CharactersController < ApplicationController
     # elsif params[:r_desc].present?
     #   @characters = @characters.sort_by { |character| -character.reviews.reco }
     # end
-
+    # array_reco = []
+    # @compteur = 0
+    # @characters.each do |character|
+    #   character.reviews.each do |review|
+    #     if review.reco == true
+    #       @compteur += 1
+    #     else
+    #       @compteur -= 1
+    #     end
+    #   end
+    #   array_reco << {character: character, note: @compteur}
+    # end
+    # raise
   end
 
 
