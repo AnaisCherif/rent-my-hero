@@ -19,7 +19,6 @@
 <div class="content">
   <div class="cards-container">
       <% if @characters.any? %>
-    <%# <h4 class="centered">Browse by character</h4> %>
     <ul>
         <% @characters.each do |character| %>
           <li class="card">
@@ -47,7 +46,6 @@
 
   </div>
   <div class="map-container">
-    <%# <h4 class="centered">Browse by location</h4> %>
     <div class="map"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"

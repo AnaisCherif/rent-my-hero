@@ -6,3 +6,15 @@
   text-align: center;
   font-family: "Josefin Sans", sans-serif;
 }
+
+.map-container {
+  width: 40%;
+}
+
+.map {
+  width: 100%;
+  height: 20%;
+  position: sticky;
+  top: 85px;
+  border-radius: 15px;
+}

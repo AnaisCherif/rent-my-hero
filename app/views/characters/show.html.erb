@@ -46,7 +46,7 @@
 
 <div class="col m-5 border rounded-4 p-4 shadow">
   <p><strong>Reviews:</strong></p>
-  <% if @character.reviews != nil %>
+  <% if @character.reviews.any? %>
     <% @character.reviews.each do |review| %>
       <div class="border-bottom">
         <%= review.user.first_name %>
