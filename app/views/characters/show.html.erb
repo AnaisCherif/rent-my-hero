@@ -8,14 +8,13 @@
 
       <div class="d-flex">
         <div class="d-flex col m-5 border rounded-4 p-4 shadow">
-            <div class="card">
-              <% if @character.photo.attached? == true %>
-                <%= cl_image_tag @character.photo.key, alt: "text" %>
-              <% else %>
-                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= @character[:name] %>">
-              <% end %>
-            </div>
-
+          <div class="card">
+            <% if @character.photo.attached? == true %>
+              <%= cl_image_tag @character.photo.key, alt: "text" %>
+            <% else %>
+              <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= @character[:name] %>">
+            <% end %>
+          </div>
 
           <div class="ms-4 mt-3">
               <p><strong>from <%= @character.univers %></strong></p>
@@ -25,38 +24,40 @@
           </div>
           <% if @character.user != current_user %>
             <div class="col-4 m-5 border rounded-4 p-4 shadow">
-            <%= render "/bookings/form", booking: Booking.new, character: @character %>
-          </div>
-        <% end %>
+              <%= render "/bookings/form", booking: Booking.new, character: @character %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="col-9 mx-auto mb-3">
-    <%= render "modal" %>
-    <% if @character.user == current_user %>
-      <div class="d-flex justify-content-between"><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "col-6 btn btn-large"} %>
-        <%= link_to 'Delete', character_path(@character),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "col-3 btn btn-ghost btn-ghost:hover" %>
-      </div>
+
+  <div class="col-9 mx-auto mb-3">
+      <%= render "modal" %>
+      <% if @character.user == current_user %>
+        <div class="d-flex justify-content-between"><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "col-6 btn btn-large"} %>
+          <%= link_to 'Delete', character_path(@character),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "col-3 btn btn-ghost btn-ghost:hover" %>
+        </div>
+        <% else %>
+          <div class="d-flex justify-content-center">
+            <%= link_to "Add a new review", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addreview', class: "btn btn-large btn-large:hover"} %>
+          </div>
+        <% end %>
+  </div>
+
+  <div class="col m-5 border rounded-4 p-4 shadow">
+    <p><strong>Reviews:</strong></p>
+    <% if @character.reviews.any? %>
+      <% @character.reviews.each do |review| %>
+        <div class="border-bottom">
+          <%= review.user.first_name %>
+          <%= review.content %>
+        </div>
+      <% end %>
     <% else %>
-      <div class="d-flex justify-content-center">
-      <%= link_to "Add a new review", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addreview', class: "btn btn-large btn-large:hover"} %>
-      </div>
-
+      <p>No reviews yet</p>
     <% end %>
-</div>
+  </div>
 
-<div class="col m-5 border rounded-4 p-4 shadow">
-  <p><strong>Reviews:</strong></p>
-  <% if @character.reviews.any? %>
-    <% @character.reviews.each do |review| %>
-      <div class="border-bottom">
-        <%= review.user.first_name %>
-        <%= review.content %>
-      </div>
-    <% end %>
-  <% else %>
-    <p>No reviews yet</p>
-  <% end %>
 </div>
