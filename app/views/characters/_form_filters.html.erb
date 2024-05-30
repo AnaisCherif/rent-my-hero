@@ -5,10 +5,16 @@
   <%# <%= f.submit "Search", class: "btn-ghost btn-ghost:hover" %>
 <%# <% end %>
 
-<%= link_to "Ascending prices", characters_path(asc: true) %>
-<%= link_to "Descending prices", characters_path(desc: true) %>
+<%# <%= form_with url: characters_path, method: :get do |f| %>
+  <%# <%= select_tag :price, options_for_select([['prix asc', '1'], ['prix desc', '2']]), { prompt: "Choose a price", selected: '2' } %>
+  <%# <%= f.submit "toto" %>
+<%# <% end %>
 
-<%= form_with url: characters_path, method: :get do |f| %>
-  <%= select_tag :price, options_for_select([['prix asc', '1'], ['prix desc', '2']]), { prompt: "Choose a price", selected: '2' } %>
-  <%= f.submit "toto" %>
+<%= form_with url: characters_path, method: :get, class: "d-flex" do |f| %>
+  <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Search your favorite character"
+  %>
+  <span class="ms-3"><%= submit_tag "Search", name: "", class: "btn btn-ghost" %></span>
 <% end %>

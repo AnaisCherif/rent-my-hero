@@ -16,12 +16,12 @@
               <% end %>
             </div>
 
-            <div class="ms-4 mt-3">
-                <p><strong>from <%= @character.from %></strong></p>
-                <p><i class="fa-solid fa-location-dot"></i> <%= @character.location %></p>
-                <p><i class="fa-solid fa-money-bill-wave"></i> <%= @character.price %> dollars / day</p>
-                <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
-            </div>
+
+          <div class="ms-4 mt-3">
+              <p><strong>from <%= @character.univers %></strong></p>
+              <p><i class="fa-solid fa-location-dot"></i> <%= @character.location %></p>
+              <p><i class="fa-solid fa-money-bill-wave"></i> <%= @character.price %> dollars / day</p>
+              <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
           </div>
           <% if @character.user != current_user %>
             <div class="col-4 m-5 border rounded-4 p-4 shadow">
