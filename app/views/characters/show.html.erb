@@ -31,7 +31,7 @@
   </div>
 
   <div class="col-9 mx-auto mb-3">
-      <%= render "modal" %>
+    <%= render "characters/modal", review: @review, open: @review_modal_open %>
       <% if @character.user == current_user %>
         <div class="d-flex justify-content-between"><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "col-6 btn btn-large"} %>
           <%= link_to 'Delete', character_path(@character),
@@ -49,7 +49,7 @@
     <% if @character.reviews.any? %>
       <% @character.reviews.each do |review| %>
         <div class="border-bottom m-2">
-          <p><strong><%= review.user.first_name %></strong> -
+          <p><strong><%= review.user.first_name %><%= review.reco ? "recommand" : "doesn't recommand" %></strong> -
           <%= review.content %></p>
         </div>
         <% end %>
