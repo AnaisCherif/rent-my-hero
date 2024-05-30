@@ -42,6 +42,7 @@
     <% else %>
       <p><%= link_to "Book now", new_character_booking_path(@character), class: "btn btn-large" %></p>
       <p><%= link_to "Add a new review", new_character_review_path(@character), class: "btn btn-primary" %></p>
+      <p><%= link_to "Add a new review (modal)", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addreview', class: "btn btn-large"} %>
     <% end %>
 </div>
 
