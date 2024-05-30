@@ -1,5 +1,7 @@
-<%= simple_form_for [@character, @review] do |f| %>
+<%= simple_form_for [character, review] do |f| %>
   <%= f.input :content %>
-  <%= f.collection_radio_buttons :reco, [[true, 'Yes'], [false, 'No']], :first, :last %>
+  <%= f.input :reco, as: :radio_buttons,
+  collection: [['Yes', true], ["No", false]], label: "I recommand ?" %>
+  
   <%= f.submit "Submit", class: "btn-ghost btn-ghost:hover" %>
 <% end %>

@@ -2,9 +2,18 @@
   max-width: 200px;
 }
 
-.mapboxgl-popup-content {
+.mapboxlabel {
   text-align: center;
   font-family: "Josefin Sans", sans-serif;
+  border-radius: 15px;
+  height: 53px;
+  max-width: 200px;
+  text-wrap: wrap;
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
 
 .map-container {

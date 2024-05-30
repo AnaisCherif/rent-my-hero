@@ -10,3 +10,18 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="addreview" tabindex="-1" role="dialog" aria-labelledby="addreviewLabel" aria-hidden="true"
+  data-controller="modal"
+  data-modal-open-value="<%= !!open %>">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addreviewLabel"><%= @character.name %></h5>
+      </div>
+      <div class="modal-body">
+        <%= render "reviews/form", review: review, user: @user, character: @character %>
+      </div>
+    </div>
+  </div>
+</div>

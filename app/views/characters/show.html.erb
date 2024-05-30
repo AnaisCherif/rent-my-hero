@@ -1,10 +1,8 @@
 <div class="container">
   <div class="m-5">
     <div class="col">
-
       <%= link_to "Back to list", characters_path, class: "btn btn-ghost mb-3" %>
-
-      <h1><%= @character.name  %></h1>
+        <h1><%= @character.name  %></h1>
 
       <div class="d-flex">
         <div class="d-flex col m-5 border rounded-4 p-4 shadow">
@@ -16,44 +14,47 @@
               <% end %>
             </div>
 
-
-          <div class="ms-4 mt-3">
+            <div class="ms-4 mt-3">
               <p><strong>from <%= @character.univers %></strong></p>
               <p><i class="fa-solid fa-location-dot"></i> <%= @character.location %></p>
               <p><i class="fa-solid fa-money-bill-wave"></i> <%= @character.price %> dollars / day</p>
               <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
+            </div>
+              <% if @character.user != current_user %>
+                <div class="col-4 m-5 border rounded-4 p-4 shadow">
+                  <%= render "/bookings/form", booking: Booking.new, character: @character %>
+                </div>
+              <% end %>
           </div>
-          <% if @character.user != current_user %>
-            <div class="col-4 m-5 border rounded-4 p-4 shadow">
-            <%= render "/bookings/form", booking: Booking.new, character: @character %>
-          </div>
-        <% end %>
       </div>
     </div>
   </div>
-</div>
-<div class="mx-auto mb-3">
-    <% if @character.user == current_user %>
-      <%= render "modal" %>
-      <p><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "btn btn-large"} %></p>
-      <%= link_to 'Delete', character_path(@character),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-ghost btn-ghost:hover" %>
-    <% else %>
-      <p><%= link_to "Book now", new_character_booking_path(@character), class: "btn btn-large" %></p>
-      <p><%= link_to "Add a new review", new_character_review_path(@character), class: "btn btn-primary" %></p>
-    <% end %>
-</div>
 
-<div class="col m-5 border rounded-4 p-4 shadow">
-  <p><strong>Reviews:</strong></p>
-  <% if @character.reviews.any? %>
-    <% @character.reviews.each do |review| %>
-      <div class="border-bottom">
-        <%= review.user.first_name %>
-        <%= review.content %>
-      </div>
+  <div class="col-9 mx-auto mb-3">
+    <%= render "characters/modal", review: @review, open: @review_modal_open %>
+      <% if @character.user == current_user %>
+        <div class="d-flex justify-content-between"><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "col-6 btn btn-large"} %>
+          <%= link_to 'Delete', character_path(@character),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "col-3 btn btn-ghost btn-ghost:hover" %>
+        </div>
+      <% else %>
+        <div class="d-flex justify-content-center">
+        <%= link_to "Add review", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addreview', class: "btn btn-large btn-large:hover"} %>
+        </div>
+      <% end %>
+  </div>
+
+  <div class="col m-5 border rounded-4 p-4 shadow">
+    <p><strong>Reviews </strong><i class="fa-solid fa-star"></i></p>
+    <% if @character.reviews.any? %>
+      <% @character.reviews.each do |review| %>
+        <div class="border-bottom m-2">
+          <p><strong><%= review.user.first_name %><%= review.reco ? " recommands" : " doesn't recommand" %></strong> -
+          <%= review.content %></p>
+        </div>
+        <% end %>
+    <% else %>
+        <p>No reviews yet</p>
     <% end %>
-  <% else %>
-    <p>No reviews yet</p>
-  <% end %>
+  </div>
 </div>

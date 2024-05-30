@@ -18,7 +18,9 @@ Character.destroy_all
 User.destroy_all
 Review.destroy_all
 
-user = User.create!(email: "test@test.com", password: "azerty", first_name: "Test", last_name: "Test")
+user = User.create!(email: "test@test.com", password: "azerty", first_name: "Lila", last_name: "Test")
+buyer = User.create!(email: "buyer@test.com", password: "azerty", first_name: "Buyer", last_name: "Buyer")
+
 female_profile_pricture_url = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 file = URI.open(female_profile_pricture_url)
 user.photo.attach(io: file, filename: "profile_picture", content_type: "image/jpeg")
@@ -55,6 +57,19 @@ characters.each do |character|
   file = URI.open(character[:photo_url])
   c.photo.attach(io: file, filename: c.name)
   c.save!
+end
+
+puts "Creating reviews..."
+
+Character.all.each do |character|
+  5.times do
+    Review.create(
+      content: Faker::Restaurant.review,
+      reco: [true, false].sample,
+      user_id: buyer.id,
+      character_id: character.id
+    )
+  end
 end
 
 puts "Finished"

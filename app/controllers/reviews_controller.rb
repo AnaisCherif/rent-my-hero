@@ -17,7 +17,8 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to character_path(@character)
     else
-      render :new, status: :unprocessable_entity
+      @review_modal_open = true
+      render 'characters/show', status: :unprocessable_entity
     end
   end
 
