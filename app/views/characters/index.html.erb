@@ -8,36 +8,45 @@
   </div>
 </div>
 
-<div>
+<%# <%= link_to "Ascending prices", characters_path(asc: true) %>
+<%# <%= link_to "Descending prices", characters_path(desc: true) %>
+
+<div class="m-5">
   <%= render 'form_filters', characters: @characters %>
 </div>
 
 <div class="content">
   <div class="cards-container">
-    <h4 class="centered">Browse by character</h4>
+      <% if @characters.any? %>
+    <%# <h4 class="centered">Browse by character</h4> %>
     <ul>
-      <% @characters.each do |character| %>
-        <li class="card">
-          <%= link_to character_path(character), class: 'card-link' do %>
-            <div class="card">
-                <% if character.photo.attached? %>
-                  <%= cl_image_tag character.photo.key, alt: "text" %>
-                <% else %>
-                    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= character[:name] %>">
-                <% end %>
-                <div class="card-info">
-                    <h3><%= character.name %></h3>
-                    <p><%= character.location %></p>
-                    <p class="price"><%= character.price %>$/day</p>
-                </div>
-            </div>
+        <% @characters.each do |character| %>
+          <li class="card">
+            <%= link_to character_path(character), class: 'card-link' do %>
+              <div class="card">
+                  <% if character.photo.attached? %>
+                    <%= cl_image_tag character.photo.key, alt: "text" %>
+                  <% else %>
+                      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= character[:name] %>">
+                  <% end %>
+                  <div class="card-info">
+                      <h3><%= character.name %></h3>
+                      <p><%= character.univers %></p>
+                      <p class="price"><%= character.price %>$/day</p>
+                  </div>
+              </div>
+            <% end %>
           <% end %>
+          <% else %>
+          <p class="text-center"><%= "Sorry, '#{params[:query]}' is not available" %> <i class="fa-regular fa-face-sad-cry"></i></p>
         <% end %>
       </li>
     </ul>
+
+
   </div>
   <div class="map-container">
-    <h4 class="centered">Browse by location</h4>
+    <%# <h4 class="centered">Browse by location</h4> %>
     <div class="map"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
