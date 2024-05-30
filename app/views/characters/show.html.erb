@@ -6,27 +6,29 @@
 
       <h1><%= @character.name  %></h1>
 
-    <div class="d-flex">
-      <div class="d-flex col m-5 border rounded-4 p-4 shadow">
-          <div class="card">
-            <% if @character.photo.attached? == true %>
-              <%= cl_image_tag @character.photo.key, alt: "text" %>
-            <% else %>
-              <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= @character[:name] %>">
-            <% end %>
-          </div>
+      <div class="d-flex">
+        <div class="d-flex col m-5 border rounded-4 p-4 shadow">
+            <div class="card">
+              <% if @character.photo.attached? == true %>
+                <%= cl_image_tag @character.photo.key, alt: "text" %>
+              <% else %>
+                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= @character[:name] %>">
+              <% end %>
+            </div>
 
-          <div class="ms-4 mt-3">
-              <p><strong>from <%= @character.from %></strong></p>
-              <p><i class="fa-solid fa-location-dot"></i> <%= @character.location %></p>
-              <p><i class="fa-solid fa-money-bill-wave"></i> <%= @character.price %> dollars / day</p>
-              <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
+            <div class="ms-4 mt-3">
+                <p><strong>from <%= @character.from %></strong></p>
+                <p><i class="fa-solid fa-location-dot"></i> <%= @character.location %></p>
+                <p><i class="fa-solid fa-money-bill-wave"></i> <%= @character.price %> dollars / day</p>
+                <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
+            </div>
           </div>
-        </div>
-      <div class="col-4 m-5 border rounded-4 p-4 shadow">
-    <%= render "/bookings/form", booking: Booking.new, character: @character %>
+          <% if @character.user != current_user %>
+            <div class="col-4 m-5 border rounded-4 p-4 shadow">
+            <%= render "/bookings/form", booking: Booking.new, character: @character %>
+          </div>
+        <% end %>
       </div>
-    </div>
     </div>
   </div>
 </div>
