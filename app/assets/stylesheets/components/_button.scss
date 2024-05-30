@@ -40,3 +40,35 @@
 .btn-large:hover {
   opacity: 0.8;
 }
+
+.btn-accept,
+.btn-decline {
+  color: $white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: light;
+  transition: opacity 0.3s ease;
+  margin: 0 10px;
+}
+
+.btn-accept {
+  background-color: green;
+  border: 1px solid green;
+}
+
+.btn-accept:hover {
+  opacity: 0.8;
+}
+
+.btn-decline {
+  background-color: red;
+  border: 1px solid red;
+}
+
+.btn-decline:hover {
+  opacity: 0.8;
+}

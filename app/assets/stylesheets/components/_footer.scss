@@ -1,13 +1,26 @@
 .footer {
-  margin-top: auto ;
+  margin-top: 20px;
   display: table-row;
-  background: #F4F4F4;
+  background: hsla(7, 83%, 72%, 1);
+  background: linear-gradient(
+    hsla(7, 83%, 72%, 1) 0%,
+    hsla(224, 47%, 66%, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    hsla(7, 83%, 72%, 1) 0%,
+    hsla(224, 47%, 66%, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    hsla(7, 83%, 72%, 1) 0%,
+    hsla(224, 47%, 66%, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f38a7c", endColorstr="#7f95d1", GradientType=1);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100px;
+  height: 70px;
   padding: 0px 50px;
-  color: rgba(0,0,0,0.3);
+  color: rgba(0, 0, 0, 0.3);
 }
 .footer-links {
   display: flex;
@@ -24,7 +37,7 @@
   opacity: 1;
 }
 .footer .fa-heart {
-  color: #D23333;
+  color: #d23333;
 }
 
 body {
