@@ -23,14 +23,12 @@ class CharactersController < ApplicationController
       @characters = @characters.sort_by { |character| character.price }
     end
 
-<<<<<<< HEAD
     if params[:r_asc].present?
       @characters = @characters.sort_by { |character| character.reviews.reco }
     elsif params[:r_desc].present?
       @characters = @characters.sort_by { |character| -character.reviews.reco }
     end
 
-=======
     # if params[:r_asc].present?
     #   @characters = @characters.sort_by { |character| character.reviews.reco }
     # elsif params[:r_desc].present?
@@ -49,7 +47,6 @@ class CharactersController < ApplicationController
     #   array_reco << {character: character, note: @compteur}
     # end
     # raise
->>>>>>> fd32b50616618169a1cd8463798f8637d718fe7d
   end
 
 
