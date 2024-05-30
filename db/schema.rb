@@ -57,7 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_092821) do
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.string "from"
+    t.string "univers"
     t.integer "price"
     t.text "skills"
     t.string "photo_url"

@@ -9,9 +9,13 @@ class CharactersController < ApplicationController
         lng: character.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: { character: character })
       }
-
+    end
       # if descending > sort by descending price
       # if ascending > sort by ascending price
+
+    if params[:query].present?
+      sql_subquery = "name ILIKE :query OR univers ILIKE :query"
+      @characters = @characters.where(sql_subquery, query: "%#{params[:query]}%")
     end
   end
 
@@ -56,6 +60,6 @@ class CharactersController < ApplicationController
   end
 
   def params_character
-    params.require(:character).permit(:name, :location, :from, :price, :skills, :photo)
+    params.require(:character).permit(:name, :location, :univers, :price, :skills, :photo)
   end
 end

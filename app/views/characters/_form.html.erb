@@ -2,14 +2,10 @@
 <%= simple_form_for(character) do |f| %>
   <%= f.input :name %>
   <%= f.input :location %>
-  <%= f.input :from %>
+  <%= f.input :univers %>
   <%= f.input :price %>
   <%= f.input :skills %>
   <%= f.input :photo, as: :file %>
   <%= f.submit "Submit", class: "btn-ghost btn-ghost:hover" %>
-  <% if character.user == current_user %>
-  <%= link_to 'Delete', character_path(@character),
-    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-ghost btn-ghost:hover" %>
-  <% end %>
 <% end %>
 </div>

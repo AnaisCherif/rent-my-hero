@@ -16,12 +16,12 @@
               <% end %>
             </div>
 
-            <div class="ms-4 mt-3">
-                <p><strong>from <%= @character.from %></strong></p>
-                <p><i class="fa-solid fa-location-dot"></i> <%= @character.location %></p>
-                <p><i class="fa-solid fa-money-bill-wave"></i> <%= @character.price %> dollars / day</p>
-                <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
-            </div>
+
+          <div class="ms-4 mt-3">
+              <p><strong>from <%= @character.univers %></strong></p>
+              <p><i class="fa-solid fa-location-dot"></i> <%= @character.location %></p>
+              <p><i class="fa-solid fa-money-bill-wave"></i> <%= @character.price %> dollars / day</p>
+              <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
           </div>
           <% if @character.user != current_user %>
             <div class="col-4 m-5 border rounded-4 p-4 shadow">
@@ -36,6 +36,8 @@
     <% if @character.user == current_user %>
       <%= render "modal" %>
       <p><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "btn btn-large"} %></p>
+      <%= link_to 'Delete', character_path(@character),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-ghost btn-ghost:hover" %>
     <% else %>
       <p><%= link_to "Book now", new_character_booking_path(@character), class: "btn btn-large" %></p>
       <p><%= link_to "Add a new review", new_character_review_path(@character), class: "btn btn-primary" %></p>
