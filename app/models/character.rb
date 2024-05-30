@@ -1,6 +1,7 @@
 class Character < ApplicationRecord
   belongs_to :user
   has_many :bookings
+  has_many :reviews, dependent: :destroy
   has_one_attached :photo
 
   validates :name, :location, :price, presence: true
