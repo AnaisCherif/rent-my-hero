@@ -32,17 +32,18 @@
     </div>
   </div>
 </div>
-<div class="col mx-auto mb-3 justify-content-between">
+<div class="col-9 mx-auto mb-3">
     <%= render "modal" %>
     <% if @character.user == current_user %>
-      <p><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "btn btn-large"} %>
+      <div class="d-flex justify-content-between"><%= link_to "Edit your character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#editcharacter', class: "col-6 btn btn-large"} %>
         <%= link_to 'Delete', character_path(@character),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-ghost btn-ghost:hover" %>
-      </p>
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "col-3 btn btn-ghost btn-ghost:hover" %>
+      </div>
     <% else %>
-      <p><%= link_to "Book now", new_character_booking_path(@character), class: "btn btn-large" %></p>
-      <p><%= link_to "Add a new review", new_character_review_path(@character), class: "btn btn-primary" %></p>
-      <p><%= link_to "Add a new review (modal)", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addreview', class: "btn btn-large"} %>
+      <div class="d-flex justify-content-center">
+      <%= link_to "Add a new review", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addreview', class: "btn btn-large btn-large:hover"} %>
+      </div>
+
     <% end %>
 </div>
 
