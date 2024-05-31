@@ -37,7 +37,6 @@
                       <h3><%= character.name %></h3>
                       <p><%= character.univers %></p>
                       <p class="price"><%= character.price %>$/day</p>
-                      <p class="price"><%= character.reviews.count %> reviews</p>
                   </div>
               </div>
             <% end %>
@@ -49,7 +48,7 @@
 
       <% if Review.any? %>
   <div class="col m-5 border rounded-4 p-4 shadow">
-    <p><strong>Some reviews:</strong></p>
+    <p><strong><i class="fa-solid fa-quote-left"></i> Some reviews :</strong></p>
     <% reviews = Review.all.sample(3) %>
 <% reviews.each_with_index do |review, index| %>
   <div class="d-flex m-3 <%= reviews.length == index + 1 ? '' : 'border-bottom' %>">
@@ -60,13 +59,14 @@
         <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= review.character[:name] %>">
     <% end %>
     </div>
-    <div class="my-3">
+    <div>
+    <%= review.user.first_name %> about <strong><%= review.character.name %></strong> :<br>
     <% if review.reco == true %>
       <%= review.user.first_name %> <i class="fa-solid fa-thumbs-up"></i> <%= link_to review.character.name, character_path(review.character) %>:<br>
     <% else %>
       <%= review.user.first_name %> <i class="fa-solid fa-thumbs-down"></i> <%= link_to review.character.name, character_path(review.character) %>:<br>
     <% end %>
-    <em><%= review.content %></em>
+    <em>"<%= review.content %>"</em>
     </div>
   </div>
 <% end %>
