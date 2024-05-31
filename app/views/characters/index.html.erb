@@ -41,6 +41,17 @@
                       <h3><%= character.name %></h3>
                       <p><%= character.univers %></p>
                       <p class="price"><%= character.price %>$/day</p>
+                      <p class="price"><i class="fa-solid fa-square-poll-vertical"></i>
+                      <% note = 0 %>
+                      <% character.reviews.each do |review| %>
+                        <% if review.reco == true %>
+                          <% note += 1 %>
+                        <% else %>
+                          <% note -= 1 %>
+                        <% end %>
+                      <% end %>
+                      <%= note %>
+                      </p>
                   </div>
               </div>
             <% end %>
