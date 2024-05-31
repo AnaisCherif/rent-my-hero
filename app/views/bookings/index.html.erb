@@ -4,15 +4,15 @@
     <div class="row d-flex">
         <!-- My Characters' Bookings -->
         <div class="col-md-6 mb-4">
-            <div class="p-3 border rounded equal-height">
+            <div class="p-3 border rounded-4 equal-height shadow"">
                 <h4 class="text-center mb-3">My characters' bookings</h4>
                 <ul class="list-group">
                     <% @my_bookings.each do |booking| %>
                         <% if booking.character.user == current_user %>
                             <li class="list-group-item" data-controller="booking" data-booking-price-value="<%= booking.character.price %>">
-                                <%= "#{booking.character.name} - booking from #{booking.user.first_name} - #{booking.character.price}$ per day" %>
-                                <p><%= "From #{booking.start_date} to #{booking.end_date}" %></p>
-                                <span data-booking-target="price"></span><br>
+                                <p class="m-3"><%= "#{booking.user.first_name} wants #{booking.character.name} - #{booking.character.price}$ per day" %><br>
+                                <%= "From #{booking.start_date} to #{booking.end_date}" %></p>
+                                <span data-booking-target="price"></span>
                                 <% if booking.status == nil %>
                                     <p class="centered">
                                         <%= link_to "✓", accept_path(booking), data: {turbo_method: :patch, turbo_confirm: "Are you sure you want to accept this booking?"}, class: "btn btn-accept" %>
@@ -32,14 +32,15 @@
 
         <!-- My Bookings -->
         <div class="col-md-6 mb-4">
-            <div class="p-3 border rounded equal-height">
+            <div class="p-3 border rounded-4 equal-height shadow">
                 <h4 class="text-center mb-3">My bookings</h4>
                 <ul class="list-group">
                     <% @bookings.each do |booking| %>
                         <% if booking.user == current_user %>
                             <li class="list-group-item">
-                                <%= "#{booking.character.name} - #{booking.character.price}$ per day" %>
-                                <p><%= "From #{booking.start_date} to #{booking.end_date}" %></p>
+                                <p class="m-3">
+                                <%= "#{booking.character.name} - #{booking.character.price}$ per day" %><br>
+                                <%= "From #{booking.start_date} to #{booking.end_date}" %></p>
                                 <% if booking.status %>
                                     <p class="accept centered"><b>Accepted</b><span class="px-2">✓</span></p>
                                 <% elsif booking.status == nil %>
