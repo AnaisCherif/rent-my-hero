@@ -47,8 +47,8 @@
   <div class="col m-5 border rounded-4 p-4 shadow">
     <p><strong>Reviews </strong><i class="fa-solid fa-star"></i></p>
     <% if @character.reviews.any? %>
-      <% @character.reviews.each do |review| %>
-        <div class="border-bottom m-2">
+      <% @character.reviews.each_with_index do |review, index| %>
+        <div class="m-2 <%= @character.reviews.length == index + 1 ? '' : 'border-bottom' %>">
           <p><strong><%= review.user.first_name %><%= review.reco ? " recommands" : " doesn't recommand" %></strong> -
           <%= review.content %></p>
         </div>

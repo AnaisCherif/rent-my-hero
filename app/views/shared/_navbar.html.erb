@@ -2,7 +2,7 @@
   <%= render "shared/modal" %>
 <% end %>
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
-  <div class="container-fluid">
+  <div class="container-fluid mx-3">
     <%= link_to "/characters", class: "navbar-brand" do %>
       <%= cl_image_tag("Logo_jhcs0y",
       width: 50, height: 50, crop: :fill) %>
@@ -18,13 +18,13 @@
           <li class="nav-item active">
           </li>
           <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, alt: "avatar", height: 50, width: 50, class: "rounded-circle object-fit-cover"   %>
-            <% else %>
-                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="avatar", height= 50, width= 50, class= "rounded-circle object-fit-cover">
-            <% end %>
-          </a>
+            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key, alt: "avatar", height: 50, width: 50, class: "rounded-circle object-fit-cover"   %>
+              <% else %>
+                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="avatar", height= 50, width= 50, class= "rounded-circle object-fit-cover">
+              <% end %>
+            </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My bookings", dashboard_path, class: "dropdown-item" %>
               <%= link_to "Add a character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addcharacter', class: "dropdown-item"} %>
