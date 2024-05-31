@@ -96,3 +96,19 @@
 .btn-filters:hover {
   opacity: 0.8;
 }
+
+.btn-ghost-pink {
+  color: $white;
+  background-color: $pink;
+  border: 1px solid $pink;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: light;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-ghost-pink:hover {
+  opacity: 0.8;
+  background-color: $pink;
+}
