@@ -27,6 +27,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My bookings", dashboard_path, class: "dropdown-item" %>
+              <%= link_to "My characters", mychars_path, class: "dropdown-item" %>
               <%= link_to "Add a character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addcharacter', class: "dropdown-item"} %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>

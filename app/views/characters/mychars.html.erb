@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>My Characters</h1>
+      <% if @characters.any? %>
+    <ul>
+        <% @characters.each do |character| %>
+          <li class="card m-2">
+            <%= link_to character_path(character), class: 'card-link' do %>
+              <div class="card">
+                  <% if character.photo.attached? %>
+                    <%= cl_image_tag character.photo.key, alt: "text" %>
+                  <% else %>
+                      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= character[:name] %>">
+                  <% end %>
+                  <div class="card-info">
+                      <h3><%= character.name %></h3>
+                      <p><%= character.univers %></p>
+                      <p class="price"><%= character.price %>$/day</p>
+                      <p class="price"><%= character.reviews.count %> reviews</p>
+                  </div>
+              </div>
+            <% end %>
+          <% end %>
+          <% else %>
+          <div class="container" style="height: 60vh;">
+            <%= render "shared/modal" %>
+            <p class="d-flex justify-content-center align-items-center" style="height: 60vh;">Sorry, you don't have any character <i class="fa-regular fa-face-sad-cry"></i></p>
+            <%= link_to "Please add a character", '#', {:remote => true, 'data-bs-toggle' =>  "modal", 'data-bs-target' => '#addcharacter', class: "btn btn-ghost btn-ghost:hover d-flex justify-content-center align-items-center"} %>
+          </div>
+        <% end %>
+      </li>
+    </ul>
+
+
+  </div>

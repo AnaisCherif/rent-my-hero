@@ -84,6 +84,10 @@ class CharactersController < ApplicationController
     redirect_to characters_path, status: :see_other
   end
 
+  def mychars
+    @characters = Character.where(user: current_user)
+  end
+
   private
 
   def set_character
