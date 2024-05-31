@@ -2,8 +2,24 @@ class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :destroy, :edit, :update]
 
   def index
-    @characters = Character.all
-    @reviews = Review.all
+    @characters = Character.with_attached_photo.includes(:reviews).all
+    @reviews = Review.where(reco: true, id: Review.pluck(:id).sample(2))
+
+    if params[:query].present?
+      sql_subquery = "name ILIKE :query OR univers ILIKE :query"
+      @characters = @characters.where(sql_subquery, query: "%#{params[:query]}%")
+    end
+
+    sort_order = params[:desc] ? :desc : params[:asc] ? :asc : nil
+    @characters.order(price: sort_order) if sort_order
+
+    if params[:r_asc].present?
+      @characters = @characters.sort_by(&:rating)
+      # @characters = @characters.sort_by { |character| character.rating }
+    elsif params[:r_desc].present?
+      @characters = @characters.sort_by(&:rating).reverse
+    end
+
     @markers = @characters.geocoded.map do |character|
       {
         lat: character.latitude,
@@ -11,46 +27,6 @@ class CharactersController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: { character: character })
       }
     end
-
-    if params[:query].present?
-      sql_subquery = "name ILIKE :query OR univers ILIKE :query"
-      @characters = @characters.where(sql_subquery, query: "%#{params[:query]}%")
-    end
-
-    if params[:desc].present?
-      @characters = @characters.sort_by { |character| -character.price }
-    elsif params[:asc].present?
-      @characters = @characters.sort_by { |character| character.price }
-    end
-
-    # if params[:r_asc].present?
-    #   @characters = @characters.sort_by { |character| character.reviews.reco }
-    # elsif params[:r_desc].present?
-    #   @characters = @characters.sort_by { |character| -character.reviews.reco }
-    # end
-
-    array_reco = []
-    @characters.each do |character|
-      @compteur = 0
-      character.reviews.each do |review|
-        if review.reco == true
-          @compteur += 1
-        else
-          @compteur -= 1
-        end
-      end
-      array_reco << {character: character, note: @compteur}
-    end
-
-    if params[:r_asc].present?
-
-      @characters = array_reco.sort_by { |c| c[:note] }.map {|a| a[:character]}.reverse
-      # @characters = @characters.sort_by { |character| character.reviews }
-    elsif params[:r_desc].present?
-      @characters = array_reco.sort_by { |c| c[:note] }.map {|a| a[:character]}
-      # @characters = @characters.sort_by { |character| -character.reviews }
-    end
-
   end
 
 
