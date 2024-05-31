@@ -9,10 +9,24 @@
                 <ul class="list-group">
                     <% @my_bookings.each do |booking| %>
                         <% if booking.character.user == current_user %>
-                            <li class="list-group-item" data-controller="booking" data-booking-price-value="<%= booking.character.price %>">
-                                <p class="m-3"><%= "#{booking.user.first_name} wants #{booking.character.name} - #{booking.character.price}$ per day" %><br>
-                                <%= "From #{booking.start_date} to #{booking.end_date}" %></p>
+                            <li class="d-flex list-group-item" data-controller="booking" data-booking-price-value="<%= booking.character.price %>">
+                              <div class="card big_img">
+                                <% if booking.character.photo.attached? == true %>
+                                  <%= cl_image_tag booking.character.photo.key, alt: "text" %>
+                                <% else %>
+                                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= @character[:name] %>">
+                                <% end %>
+                              </div>
+                              <div>
+                                <p class="m-3"><%= "#{booking.user.first_name} wants" %> <%= link_to booking.character.name, character_path(booking.character) %><br>
+                                <span data-booking-target="info"></span> =
                                 <span data-booking-target="price"></span>
+                                <p class="m-3">From:
+                                <span data-booking-action="change->booking#updatedash" data-booking-target="start_date"><%= booking.start_date %></span><br>
+                                to:
+                                <span data-booking-action="change->booking#updatedash" data-booking-target="end_date"><%= booking.end_date %></span>
+                                </p>
+                                </p>
                                 <% if booking.status == nil %>
                                     <p class="centered">
                                         <%= link_to "✓", accept_path(booking), data: {turbo_method: :patch, turbo_confirm: "Are you sure you want to accept this booking?"}, class: "btn btn-accept" %>
@@ -23,6 +37,7 @@
                                 <% else %>
                                     <p class="decline centered"><b>Declined</b> <span class="px-2">✕</span></p>
                                 <% end %>
+                              </div>
                             </li>
                         <% end %>
                     <% end %>
@@ -37,10 +52,25 @@
                 <ul class="list-group">
                     <% @bookings.each do |booking| %>
                         <% if booking.user == current_user %>
-                            <li class="list-group-item">
+                            <li class="d-flex list-group-item" data-controller="booking" data-booking-price-value="<%= booking.character.price %>">
+                              <div class="card big_img">
+                                <% if booking.character.photo.attached? == true %>
+                                  <%= cl_image_tag booking.character.photo.key, alt: "text" %>
+                                <% else %>
+                                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= @character[:name] %>">
+                                <% end %>
+                              </div>
+                              <div>
                                 <p class="m-3">
-                                <%= "#{booking.character.name} - #{booking.character.price}$ per day" %><br>
-                                <%= "From #{booking.start_date} to #{booking.end_date}" %></p>
+                                <%= link_to booking.character.name, character_path(booking.character) %><br>
+                                <span data-booking-target="info""></span> =
+                                <span data-booking-target="price"></span>
+                                <p class="m-3">From:
+                                <span data-booking-action="change->booking#updatedash" data-booking-target="start_date"><%= booking.start_date %></span><br>
+                                to:
+                                <span data-booking-action="change->booking#updatedash" data-booking-target="end_date"><%= booking.end_date %></span>
+                                </p>
+                                </p>
                                 <% if booking.status %>
                                     <p class="accept centered"><b>Accepted</b><span class="px-2">✓</span></p>
                                 <% elsif booking.status == nil %>
@@ -48,6 +78,7 @@
                                 <% else %>
                                     <p class="decline centered"><b>Declined</b> <span class="px-2">✕</span></p>
                                 <% end %>
+                                </div>
                             </li>
                         <% end %>
                     <% end %>
