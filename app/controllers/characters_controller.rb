@@ -43,6 +43,7 @@ class CharactersController < ApplicationController
     end
 
     if params[:r_asc].present?
+
       @characters = array_reco.sort_by { |c| c[:note] }.map {|a| a[:character]}.reverse
       # @characters = @characters.sort_by { |character| character.reviews }
     elsif params[:r_desc].present?
