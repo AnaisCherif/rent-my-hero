@@ -30,8 +30,8 @@ class CharactersController < ApplicationController
     # end
 
     array_reco = []
-    @compteur = 0
     @characters.each do |character|
+      @compteur = 0
       character.reviews.each do |review|
         if review.reco == true
           @compteur += 1
