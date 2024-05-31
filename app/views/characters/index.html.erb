@@ -69,8 +69,7 @@
               <% end %>
             </div>
             <div>
-              <%= review.user.first_name %> about <strong><%= review.character.name %></strong> :<br>
-              <%= review.user.first_name %> <i class="fa-solid fa-thumbs-<%= review.reco ? 'up' : 'down' %>"></i> <%= link_to review.character.name, character_path(review.character) %>:<br>
+              <%= review.user.first_name %> <i class="fa-solid fa-thumbs-<%= review.reco ? 'up' : 'down' %>"></i> <strong><%= link_to review.character.name, character_path(review.character) %></strong>:<br>
               <em>"<%= review.content %>"</em>
             </div>
           </div>
