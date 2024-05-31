@@ -42,6 +42,7 @@
                       <h3><%= character.name %></h3>
                       <p><%= character.univers %></p>
                       <p class="price"><%= character.price %>$/day</p>
+                      <p class="price"><%= character.reviews.count %> reviews</p>
                   </div>
               </div>
             <% end %>
@@ -64,8 +65,12 @@
         <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= review.character[:name] %>">
     <% end %>
     </div>
-    <div>
-    <%= review.user.first_name %> about <%= review.character.name %>:<br>
+    <div class="my-3">
+    <% if review.reco == true %>
+      <%= review.user.first_name %> <i class="fa-solid fa-thumbs-up"></i> <%= link_to review.character.name, character_path(review.character) %>:<br>
+    <% else %>
+      <%= review.user.first_name %> <i class="fa-solid fa-thumbs-down"></i> <%= link_to review.character.name, character_path(review.character) %>:<br>
+    <% end %>
     <em><%= review.content %></em>
     </div>
   </div>
