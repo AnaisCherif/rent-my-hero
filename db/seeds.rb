@@ -64,7 +64,7 @@ puts "Creating reviews..."
 Character.all.each do |character|
   5.times do
     Review.create(
-      content: Faker::Restaurant.review,
+      content: Faker::Quote.most_interesting_man_in_the_world,
       reco: [true, false].sample,
       user_id: buyer.id,
       character_id: character.id

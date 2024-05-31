@@ -30,8 +30,8 @@ class CharactersController < ApplicationController
     # end
 
     array_reco = []
-    @compteur = 0
     @characters.each do |character|
+      @compteur = 0
       character.reviews.each do |review|
         if review.reco == true
           @compteur += 1
@@ -43,6 +43,7 @@ class CharactersController < ApplicationController
     end
 
     if params[:r_asc].present?
+
       @characters = array_reco.sort_by { |c| c[:note] }.map {|a| a[:character]}.reverse
       # @characters = @characters.sort_by { |character| character.reviews }
     elsif params[:r_desc].present?

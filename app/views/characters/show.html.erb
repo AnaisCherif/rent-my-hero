@@ -63,7 +63,7 @@
             <% else %>
               <p><strong><%= review.user.first_name %> <i class="fa-solid fa-thumbs-down"></i><br></strong>
             <% end %>
-            <%= review.content %></p>
+            "<%= review.content %>"</p>
           </div>
         </div>
       <% end %>
