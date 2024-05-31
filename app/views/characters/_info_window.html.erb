@@ -1,6 +1,6 @@
 <div class= "mapboxlabel">
   <%= link_to character_path(character) do %>
-  <div class= "d-flex">
+  <div class= "d-flex gap-2">
     <%= cl_image_tag character.photo.key, alt: "text", height: 50, width: 50, class: "rounded-circle object-fit-cover" %>
     <div>
       <h6><%= character.name %></h6>
