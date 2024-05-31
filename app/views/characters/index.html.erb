@@ -54,8 +54,9 @@
       <% if Review.any? %>
   <div class="col m-5 border rounded-4 p-4 shadow">
     <p><strong>Some reviews:</strong></p>
-<% Review.all.sample(3).each do |review| %>
-  <div class="d-flex m-3 border-bottom">
+    <% reviews = Review.all.sample(3) %>
+<% reviews.each_with_index do |review, index| %>
+  <div class="d-flex m-3 <%= reviews.length == index + 1 ? '' : 'border-bottom' %>">
     <div class="mx-3 align-center">
     <% if review.character.user.photo.attached? %>
       <%= cl_image_tag review.character.user.photo.key, alt: "text", height: 50, width: 50, class: "rounded-circle object-fit-cover" %>
