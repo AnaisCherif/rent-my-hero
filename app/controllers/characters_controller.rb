@@ -13,13 +13,6 @@ class CharactersController < ApplicationController
     sort_order = params[:desc] ? :desc : params[:asc] ? :asc : nil
     @characters.order(price: sort_order) if sort_order
 
-    if params[:r_asc].present?
-      @characters = @characters.sort_by(&:rating)
-      # @characters = @characters.sort_by { |character| character.rating }
-    elsif params[:r_desc].present?
-      @characters = @characters.sort_by(&:rating).reverse
-    end
-
     @markers = @characters.geocoded.map do |character|
       {
         lat: character.latitude,
@@ -27,6 +20,14 @@ class CharactersController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: { character: character })
       }
     end
+
+    if params[:r_asc].present?
+      @characters = @characters.sort_by(&:rating)
+      # @characters = @characters.sort_by { |character| character.rating }
+    elsif params[:r_desc].present?
+      @characters = @characters.sort_by(&:rating).reverse
+    end
+
   end
 
 
