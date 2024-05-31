@@ -3,7 +3,7 @@ class CharactersController < ApplicationController
 
   def index
     @characters = Character.with_attached_photo.includes(:reviews).all
-    @reviews = Review.where(reco: true, id: Review.pluck(:id).sample(2))
+    @reviews = Review.order("RANDOM()").limit(3)
 
     if params[:query].present?
       sql_subquery = "name ILIKE :query OR univers ILIKE :query"
