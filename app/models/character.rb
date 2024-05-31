@@ -9,4 +9,8 @@ class Character < ApplicationRecord
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
+
+  def rating
+    self.reviews.sum { |r| r.reco? ? 1 : -1  }
+  end
 end
