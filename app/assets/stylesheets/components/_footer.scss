@@ -1,5 +1,11 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .footer {
-  margin-top: 20px;
+  margin-top: auto;
   display: table-row;
   background: hsla(7, 83%, 72%, 1);
   background: linear-gradient(
@@ -38,10 +44,4 @@
 }
 .footer .fa-heart {
   color: #d23333;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
