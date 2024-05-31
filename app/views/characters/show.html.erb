@@ -50,7 +50,7 @@
       <% @character.reviews.each_with_index do |review, index| %>
         <div class="m-2 <%= @character.reviews.length == index + 1 ? '' : 'border-bottom' %>">
           <p><strong><%= review.user.first_name %><%= review.reco ? " recommands" : " doesn't recommand" %></strong> -
-          <%= review.content %></p>
+          "<%= review.content %>"</p>
         </div>
         <% end %>
     <% else %>

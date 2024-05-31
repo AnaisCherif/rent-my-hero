@@ -42,6 +42,7 @@
                       <h3><%= character.name %></h3>
                       <p><%= character.univers %></p>
                       <p class="price"><%= character.price %>$/day</p>
+                      <%# <p><%= character.review %>
                   </div>
               </div>
             <% end %>
@@ -53,7 +54,7 @@
 
       <% if Review.any? %>
   <div class="col m-5 border rounded-4 p-4 shadow">
-    <p><strong>Some reviews:</strong></p>
+    <p><strong><i class="fa-solid fa-quote-left"></i> Some reviews :</strong></p>
     <% reviews = Review.all.sample(3) %>
 <% reviews.each_with_index do |review, index| %>
   <div class="d-flex m-3 <%= reviews.length == index + 1 ? '' : 'border-bottom' %>">
@@ -65,8 +66,8 @@
     <% end %>
     </div>
     <div>
-    <%= review.user.first_name %> about <%= review.character.name %>:<br>
-    <em><%= review.content %></em>
+    <%= review.user.first_name %> about <strong><%= review.character.name %></strong> :<br>
+    <em>"<%= review.content %>"</em>
     </div>
   </div>
 <% end %>
