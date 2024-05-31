@@ -14,10 +14,10 @@
 
 <div class="d-flex justify-content-start align-items-center mb-3 mx-5">
   <p class="mt-3 mx-3">Sort by:</p>
-  <%= link_to "Best reviews", characters_path(r_asc: true), class: "btn btn-filters" %>
-  <%= link_to "Worst reviews", characters_path(r_desc: true), class: "btn btn-filters"%>
-  <%= link_to "Ascending prices", characters_path(asc: true), class: "btn btn-filters" %>
-  <%= link_to "Descending prices", characters_path(desc: true), class: "btn btn-filters"%>
+  <%= link_to "Best reviews", characters_path(r_asc: true, anchor:"browse"), class: "btn btn-filters" %>
+  <%= link_to "Worst reviews", characters_path(r_desc: true, anchor:"browse"), class: "btn btn-filters"%>
+  <%= link_to "Ascending prices", characters_path(asc: true, anchor:"browse"), class: "btn btn-filters" %>
+  <%= link_to "Descending prices", characters_path(desc: true, anchor:"browse"), class: "btn btn-filters"%>
 </div>
 
 <div class="content">
