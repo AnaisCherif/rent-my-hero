@@ -49,13 +49,27 @@
     <p><strong>Reviews </strong><i class="fa-solid fa-star"></i></p>
     <% if @character.reviews.any? %>
       <% @character.reviews.each_with_index do |review, index| %>
-        <div class="m-2 <%= @character.reviews.length == index + 1 ? '' : 'border-bottom' %>">
-          <p><strong><%= review.user.first_name %><%= review.reco ? " recommands" : " doesn't recommand" %></strong> -
-          <%= review.content %></p>
+        <div class="d-flex m-2 my-3 <%= @character.reviews.length == index + 1 ? '' : 'border-bottom' %>">
+          <div class="mx-3 align-center">
+            <% if review.character.user.photo.attached? %>
+              <%= cl_image_tag review.character.user.photo.key, alt: "text", height: 50, width: 50, class: "rounded-circle object-fit-cover" %>
+            <% else %>
+                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= review.character[:name] %>">
+            <% end %>
+          </div>
+          <div>
+            <% if review.reco == true %>
+              <p><strong><%= review.user.first_name %> <i class="fa-solid fa-thumbs-up"></i><br></strong>
+            <% else %>
+              <p><strong><%= review.user.first_name %> <i class="fa-solid fa-thumbs-down"></i><br></strong>
+            <% end %>
+            <%= review.content %></p>
+          </div>
         </div>
-        <% end %>
+      <% end %>
     <% else %>
         <p>No reviews yet</p>
     <% end %>
   </div>
+
 </div>
