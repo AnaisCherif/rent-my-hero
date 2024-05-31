@@ -6,7 +6,7 @@
 
       <div class="d-flex">
         <div class="d-flex col m-5 border rounded-4 p-4 shadow">
-            <div class="card">
+            <div class="card big_img">
               <% if @character.photo.attached? == true %>
                 <%= cl_image_tag @character.photo.key, alt: "text" %>
               <% else %>
@@ -20,12 +20,13 @@
               <p><i class="fa-solid fa-money-bill-wave"></i> <%= @character.price %> dollars / day</p>
               <p><i class="fa-solid fa-brain"></i> <%= @character.skills %></p>
             </div>
-              <% if @character.user != current_user %>
-                <div class="col-4 m-5 border rounded-4 p-4 shadow">
-                  <%= render "/bookings/form", booking: Booking.new, character: @character %>
-                </div>
-              <% end %>
           </div>
+
+          <% if @character.user != current_user %>
+            <div class="col-4 m-5 border rounded-4 p-4 shadow">
+              <%= render "/bookings/form", booking: Booking.new, character: @character %>
+            </div>
+          <% end %>
       </div>
     </div>
   </div>

@@ -36,7 +36,7 @@
                   <% if character.photo.attached? %>
                     <%= cl_image_tag character.photo.key, alt: "text" %>
                   <% else %>
-                      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= character[:name] %>">
+                      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" alt="<%= character[:name] %>" class="card_img">
                   <% end %>
                   <div class="card-info">
                       <h3><%= character.name %></h3>
