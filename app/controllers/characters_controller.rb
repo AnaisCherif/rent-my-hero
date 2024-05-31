@@ -23,30 +23,33 @@ class CharactersController < ApplicationController
       @characters = @characters.sort_by { |character| character.price }
     end
 
-    if params[:r_asc].present?
-      @characters = @characters.sort_by { |character| character.reviews.reco }
-    elsif params[:r_desc].present?
-      @characters = @characters.sort_by { |character| -character.reviews.reco }
-    end
-
     # if params[:r_asc].present?
     #   @characters = @characters.sort_by { |character| character.reviews.reco }
     # elsif params[:r_desc].present?
     #   @characters = @characters.sort_by { |character| -character.reviews.reco }
     # end
-    # array_reco = []
-    # @compteur = 0
-    # @characters.each do |character|
-    #   character.reviews.each do |review|
-    #     if review.reco == true
-    #       @compteur += 1
-    #     else
-    #       @compteur -= 1
-    #     end
-    #   end
-    #   array_reco << {character: character, note: @compteur}
-    # end
-    # raise
+
+    array_reco = []
+    @compteur = 0
+    @characters.each do |character|
+      character.reviews.each do |review|
+        if review.reco == true
+          @compteur += 1
+        else
+          @compteur -= 1
+        end
+      end
+      array_reco << {character: character, note: @compteur}
+    end
+
+    if params[:r_asc].present?
+      @characters = array_reco.sort_by { |c| c[:note] }.map {|a| a[:character]}.reverse
+      # @characters = @characters.sort_by { |character| character.reviews }
+    elsif params[:r_desc].present?
+      @characters = array_reco.sort_by { |c| c[:note] }.map {|a| a[:character]}
+      # @characters = @characters.sort_by { |character| -character.reviews }
+    end
+
   end
 
 
